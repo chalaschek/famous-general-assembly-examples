@@ -12,13 +12,18 @@ mainContext.setPerspective(1000);
 
 var square = new Surface({
   size: [200, 200],
-  classes: ['blue-background']
+  classes: ['blue-background', 'backfaceVisibility']
 });
+
+var angle = 0;
 
 var modifier = new Modifier({
   align: [0.5, 0.5],
   origin: [0.5, 0.5],
-  transform: Transform.translate(100, 200)
+  transform: function(){
+    angle += 0.03;
+    return Transform.rotateY(angle);
+  }
 });
 
 mainContext.add(modifier).add(square);
