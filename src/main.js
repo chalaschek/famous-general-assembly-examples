@@ -14,4 +14,9 @@ var square = new Surface({
   classes: ['blue-background']
 });
 
-mainContext.add(square);
+var modifier = new Modifier({
+  align: [0.5, 0.5],
+  origin: [0.5, 0.5]
+});
+
+mainContext.add(modifier).add(square);
