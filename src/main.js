@@ -1,9 +1,9 @@
 /*global famous*/
 // import dependencies
 var Engine = famous.core.Engine;
-var Modifier = famous.core.Modifier;
 var Surface = famous.core.Surface;
 var Transform = famous.core.Transform;
+var StateModifier = famous.modifiers.StateModifier;
 
 // create the main context
 var mainContext = Engine.createContext();
@@ -15,15 +15,12 @@ var square = new Surface({
   classes: ['blue-background', 'backfaceVisibility']
 });
 
-var angle = 0;
-
-var modifier = new Modifier({
+var stateModifier = new StateModifier({
   align: [0.5, 0.5],
-  origin: [0.5, 0.5],
-  transform: function(){
-    angle += 0.03;
-    return Transform.rotateY(angle);
-  }
+  origin: [0.5, 0.5]
 });
 
-mainContext.add(modifier).add(square);
+stateModifier.setTransform(Transform.rotateY(1000), {duration: 500, curve: "easeOutBounce"});
+stateModifier.setTransform(Transform.rotateY(0), {duration: 3000, curve: "easeOutBounce"});
+
+mainContext.add(stateModifier).add(square);
